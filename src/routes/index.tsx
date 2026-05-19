@@ -148,118 +148,125 @@ function Index() {
       <AmbientParticles count={28} />
       <Stars count={40} />
 
-      {/* ===== HERO ===== */}
-      <section ref={heroRef} className="relative px-4 pt-6 pb-16 sm:px-8 sm:pb-20 lg:px-16">
-        {/* Mouse-reactive glow */}
+      {/* ===== HERO (mockup style: unified frame) ===== */}
+      <section ref={heroRef} className="relative px-3 pt-4 pb-10 sm:px-6 sm:pt-6 lg:px-10">
+        {/* Mouse-reactive ambient glow */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 -z-0 transition-[background] duration-300"
           style={{
-            background: `radial-gradient(600px circle at ${mouse.x}% ${mouse.y}%, rgba(216,109,255,0.22), transparent 60%), radial-gradient(900px circle at ${100 - mouse.x}% ${mouse.y}%, rgba(120,80,220,0.18), transparent 65%)`,
+            background: `radial-gradient(700px circle at ${mouse.x}% ${mouse.y}%, rgba(216,109,255,0.22), transparent 60%), radial-gradient(900px circle at ${100 - mouse.x}% ${100 - mouse.y}%, rgba(120,80,220,0.18), transparent 65%)`,
           }}
         />
-        {/* Layered blur orbs */}
         <div aria-hidden className="pointer-events-none absolute -left-20 top-20 h-72 w-72 rounded-full bg-accent/30 blur-3xl" />
         <div aria-hidden className="pointer-events-none absolute right-0 top-40 h-80 w-80 rounded-full bg-lavender/30 blur-3xl" />
 
-        {/* Nav */}
-        <nav className="relative z-10 mx-auto flex max-w-7xl items-center justify-between">
-          <div className="font-display text-xl tracking-wide">
-            <span className="text-lilac">✦</span> <span className="gradient-text font-semibold">Arwen</span> <span className="text-lilac">✦</span>
+        {/* Unified hero frame */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
+          className="relative z-10 mx-auto max-w-[1400px] overflow-hidden rounded-[2rem] glass-strong neon-border"
+        >
+          {/* Portrait — full bleed right side */}
+          <div className="absolute inset-y-0 right-0 w-full lg:w-[58%]">
+            <img
+              src={arwenHero}
+              alt="Arwen — geek creator portrait in cozy purple gaming setup"
+              width={1400} height={1200}
+              className="h-full w-full object-cover object-[center_top] lg:object-[center_center]"
+            />
+            {/* Left fade so text stays readable */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0c0418] via-[#0c0418]/85 to-transparent lg:from-[#0c0418] lg:via-[#0c0418]/70 lg:to-transparent" />
+            {/* Bottom fade */}
+            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#0c0418] to-transparent" />
           </div>
-          <motion.a whileHover={{ y: -2, scale: 1.05 }} whileTap={{ scale: 0.97 }}
-             href="mailto:by.arwenn.contato@gmail.com"
-             className="btn-ghost sweep flex items-center gap-2 rounded-full px-4 py-2 text-sm transition hover:shadow-[0_0_30px_rgba(184,108,255,0.5)]">
-            <Mail size={16} /> Business Contact
-          </motion.a>
-        </nav>
 
-        <div className="relative z-10 mx-auto mt-10 grid max-w-7xl items-center gap-10 lg:mt-16 lg:grid-cols-[1.05fr_1fr]">
-          {/* Left */}
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
-                      className="relative z-10">
-            <div className="relative inline-block">
-              <Sparkles className="absolute -left-8 -top-6 text-lilac float-slow" size={28} />
-              <h1 className="font-display text-7xl font-bold leading-none tracking-tight text-glow sm:text-8xl lg:text-9xl">
-                Arwen
-              </h1>
-              <Sparkles className="absolute -right-10 top-2 text-accent float-slow" size={24} style={{ animationDelay: "1s" }}/>
-            </div>
-            <p className="font-script -mt-2 text-5xl text-glow gradient-text sm:text-6xl">Geek Creator</p>
-
-            <h2 className="mt-8 text-2xl font-semibold leading-tight sm:text-3xl">
-              Developer by day,<br/>geek permanently <span className="inline-block float-slow">✨</span>
-            </h2>
-            <p className="mt-5 max-w-md text-base leading-relaxed text-[color:var(--muted-foreground)]">
-              Geek, gamer and lifestyle creator sharing games, books, makeup, setup content,
-              events and chaotic hyperfixations with a maximalist cozy aesthetic.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-4">
-              <motion.a
-                whileHover={{ scale: 1.06, y: -3, boxShadow: "0 14px 50px rgba(216,109,255,0.7)" }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ type: "spring", stiffness: 260, damping: 18 }}
-                href="#portfolio"
-                className="btn-primary sweep flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold">
-                <Gamepad2 size={18} /> UGC Portfolio
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.06, y: -3, boxShadow: "0 10px 40px rgba(184,108,255,0.45)" }}
-                whileTap={{ scale: 0.96 }}
-                transition={{ type: "spring", stiffness: 260, damping: 18 }}
+          {/* Inner overlay layout */}
+          <div className="relative grid min-h-[640px] grid-rows-[auto_1fr_auto] p-5 sm:p-8 lg:min-h-[760px] lg:p-12">
+            {/* Top nav */}
+            <nav className="relative z-10 flex items-center justify-between">
+              <div className="font-display text-xl tracking-wide">
+                <span className="text-lilac">✦</span> <span className="gradient-text font-semibold">Arwen</span> <span className="text-lilac">✦</span>
+              </div>
+              <motion.a whileHover={{ y: -2, scale: 1.05 }} whileTap={{ scale: 0.97 }}
                 href="mailto:by.arwenn.contato@gmail.com"
-                className="btn-ghost sweep flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold">
-                <Mail size={18} /> Business Contact
+                className="btn-ghost sweep flex items-center gap-2 rounded-full px-4 py-2 text-xs sm:text-sm transition hover:shadow-[0_0_30px_rgba(184,108,255,0.5)]">
+                <Mail size={14} /> Business Contact
               </motion.a>
-            </div>
-          </motion.div>
+            </nav>
 
-          {/* Right portrait */}
-          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.2 }}
-                      className="relative mx-auto w-full max-w-md">
-            <div className="absolute -inset-10 rounded-[3rem] bg-gradient-to-br from-lavender/50 via-glow/40 to-accent/40 blur-3xl" />
-            <div className="absolute -inset-2 rounded-[2.2rem] bg-gradient-to-br from-accent/40 to-lavender/30 blur-xl" />
-            <div className="relative overflow-hidden rounded-[2rem] glass-strong neon-border pulse-glow">
-              <img src={arwenHero} alt="Arwen — geek creator portrait in cozy purple gaming setup" width={1024} height={1280}
-                   className="h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#08030d]/70 via-[#08030d]/10 to-transparent" />
-              <Sparkles className="absolute right-4 top-4 text-white/90 float-slow" size={28} />
-              <Star className="absolute bottom-6 left-6 text-lilac float-slow" size={22} style={{ animationDelay: "2s" }}/>
-              <div className="absolute left-4 top-4 rounded-full bg-black/50 px-3 py-1 text-[10px] font-semibold tracking-[0.25em] text-lilac backdrop-blur">
-                ★ PLAYER 1 ★
+            {/* Center content (left aligned) */}
+            <div className="relative z-10 mt-8 max-w-xl lg:mt-12 lg:max-w-2xl">
+              <div className="relative inline-block">
+                <Sparkles className="absolute -left-6 -top-4 text-lilac float-slow" size={22} />
+                <h1 className="font-display text-6xl font-bold leading-[0.95] tracking-tight text-glow sm:text-7xl lg:text-8xl">
+                  Arwen<span className="text-lilac">,</span>
+                </h1>
+                <Sparkles className="absolute -right-8 top-2 text-accent float-slow" size={20} style={{ animationDelay: "1s" }} />
+              </div>
+              <p className="font-script mt-1 text-5xl text-glow gradient-text sm:text-6xl">Geek Creator</p>
+
+              <h2 className="mt-6 text-2xl font-semibold leading-tight sm:text-3xl">
+                Developer by day,<br />geek permanently <span className="inline-block float-slow">✨</span>
+              </h2>
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-[color:var(--muted-foreground)] sm:text-base">
+                Geek, gamer and lifestyle creator sharing games, books, makeup, setup content,
+                events and chaotic hyperfixations with a maximalist cozy aesthetic.
+              </p>
+
+              <div className="mt-7 flex flex-wrap gap-3 sm:gap-4">
+                <motion.a
+                  whileHover={{ scale: 1.06, y: -3, boxShadow: "0 14px 50px rgba(216,109,255,0.7)" }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                  href="#portfolio"
+                  className="btn-primary sweep flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold">
+                  <Gamepad2 size={18} /> UGC Portfolio
+                </motion.a>
+                <motion.a
+                  whileHover={{ scale: 1.06, y: -3, boxShadow: "0 10px 40px rgba(184,108,255,0.45)" }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 18 }}
+                  href="mailto:by.arwenn.contato@gmail.com"
+                  className="btn-ghost sweep flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold">
+                  <Mail size={18} /> Business Contact
+                </motion.a>
               </div>
             </div>
-          </motion.div>
-        </div>
 
-        {/* Wide cozy room strip */}
-        <div className="relative mx-auto mt-14 max-w-7xl overflow-hidden rounded-3xl glass">
-          <img src={setupWide} alt="Cozy purple gamer setup" width={1280} height={400} loading="lazy"
-               className="h-32 w-full object-cover opacity-60 sm:h-48" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#170822]/30 to-[#08030d]" />
-        </div>
-      </section>
-
-      {/* ===== SOCIAL BAR ===== */}
-      <section className="relative px-4 sm:px-8 lg:px-16">
-        <div className="mx-auto max-w-6xl glass-strong rounded-3xl p-6 sm:p-8">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            {socials.map((s) => (
-              <motion.a key={s.label} href={s.href}
-                whileHover={{ y: -4 }}
-                transition={{ type: "spring", stiffness: 300, damping: 18 }}
-                className="group sweep relative flex items-center gap-4 rounded-2xl p-2">
-                <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-lavender/30 to-accent/20 neon-border transition group-hover:shadow-[0_0_28px_rgba(216,109,255,0.7)]">
-                  <s.icon size={22} className="text-lilac transition group-hover:scale-110 group-hover:text-white" />
+            {/* Bottom social bar inside hero frame */}
+            <div className="relative z-10 mt-10 lg:mt-14">
+              <div className="glass-strong rounded-2xl p-4 sm:p-5">
+                <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                  {socials.map((s) => (
+                    <motion.a key={s.label} href={s.href}
+                      whileHover={{ y: -3 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 18 }}
+                      className="group sweep relative flex items-center gap-3 rounded-xl p-1.5">
+                      <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-lavender/30 to-accent/20 neon-border transition group-hover:shadow-[0_0_28px_rgba(216,109,255,0.7)]">
+                        <s.icon size={18} className="text-lilac transition group-hover:scale-110 group-hover:text-white" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="gradient-text text-xs font-semibold sm:text-sm">{s.label}</div>
+                        <div className="truncate text-[10px] text-[color:var(--muted-foreground)] sm:text-xs">{s.handle}</div>
+                      </div>
+                    </motion.a>
+                  ))}
                 </div>
-                <div className="min-w-0">
-                  <div className="gradient-text text-sm font-semibold">{s.label}</div>
-                  <div className="truncate text-xs text-[color:var(--muted-foreground)]">{s.handle}</div>
-                </div>
-              </motion.a>
-            ))}
+              </div>
+            </div>
           </div>
+
+          {/* Decorative sparkles inside frame */}
+          <Sparkles className="absolute right-6 top-20 z-10 text-white/80 float-slow" size={20} />
+          <Star className="absolute right-24 top-40 z-10 text-lilac float-slow" size={14} style={{ animationDelay: "1.4s" }} />
+          <Sparkles className="absolute right-10 bottom-32 z-10 text-accent float-slow" size={16} style={{ animationDelay: "2.2s" }} />
+        </motion.div>
+
+        {/* Wide cozy room strip below frame */}
+        <div className="relative mx-auto mt-10 max-w-[1400px] overflow-hidden rounded-3xl glass">
+          <img src={setupWide} alt="Cozy purple gamer setup" width={1280} height={400} loading="lazy"
+            className="h-28 w-full object-cover opacity-60 sm:h-40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#170822]/30 to-[#08030d]" />
         </div>
       </section>
 
