@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import {
-  Instagram, Mail, Youtube, Music2, Gamepad2, BookOpen, Sparkles,
+  Instagram, Mail, Youtube, Music2, Twitch, Gamepad2, BookOpen, Sparkles,
   Monitor, Calendar, Package, Headphones, Camera, Play, Star,
-  Heart, Gift, Video, Wand2, Palette, MessageSquare, Ghost, Joystick,
-  Link as LinkIcon, Languages,
+  Heart, Gift, Video, Wand2, Palette, MessageSquare,
+  Languages, Download, Users, Eye, BarChart3, CheckCircle2, FileText,
 } from "lucide-react";
 import arwenHero from "@/assets/arwen-hero.jpg";
 import setupWide from "@/assets/setup-wide.jpg";
@@ -23,61 +23,120 @@ export const Route = createFileRoute("/")({ component: Index });
 
 type Lang = "en" | "pt";
 
-const LINKS_URL = "https://byarwenn-link.lovable.app/";
-
 const t = {
   en: {
     nav_contact: "Business Contact",
-    nav_links: "My Links",
     tagline: "Geek Creator",
     h2_line1: "Developer by day,",
-    h2_line2: "geek permanently",
-    intro: "Geek, gamer and lifestyle creator sharing games, books, makeup, setup content, events and chaotic hyperfixations with a maximalist cozy aesthetic.",
-    cta_portfolio: "UGC Portfolio",
-    cta_links: "Link in Bio",
-    hyper_title: "CURRENT HYPERFIXATIONS",
-    hyper: ["Games", "Books", "Makeup", "Setup", "Geek Events", "Collectibles", "Cozy Content", "UGC"],
+    h2_line2: "geek the rest of the time",
+    intro: "Geek, gamer and lifestyle creator. I share games, books, makeup, setup, events and whatever I'm into right now — always with an authentic, aesthetic touch.",
+    cta_portfolio: "See my work",
+    cta_media: "Media Kit",
+    hyper_title: "WHAT I LOVE",
+    hyper: ["Games", "Books", "Makeup", "Setup", "Geek Events", "Collectibles", "Slow Mornings", "UGC"],
+    about_title: "About me",
+    about_p1: "Hi, I'm Arwen — developer, gamer and creator. I built my little corner of the internet around the things I love: gaming, books, beauty and the small details that make a space feel like home.",
+    about_p2: "I create content with care: thoughtful scripts, soft lighting, an aesthetic that feels like me. If your brand fits this universe, let's talk.",
     ugc_title: "UGC + Creator",
-    ugc_desc: "I create authentic, modern and engaging content designed for connection, storytelling and social media performance.",
+    ugc_desc: "Authentic, modern and engaging content designed for connection, storytelling and social media performance.",
     services: ["Reviews", "Unboxing", "TikTok / Reels Videos", "Storytelling Videos", "Aesthetic Content", "Geek Lifestyle Content"],
     aesthetic_pill: "Aesthetic content",
     portfolio_title: "PORTFOLIO",
     portfolio_items: ["Setup Tour", "Game Review", "UGC Beauty", "Geek Unboxing", "Cozy Gaming", "Makeup Reel"],
-    view_full: "View full portfolio",
+    media_title: "MEDIA KIT",
+    media_sub: "Numbers, formats and how we can work together",
+    stats: [
+      { icon: Users, label: "Followers", value: "1.2k", note: "and growing" },
+      { icon: Eye, label: "Monthly views", value: "32k", note: "across platforms" },
+      { icon: BarChart3, label: "Main audience", value: "85%", note: "women, 18–34" },
+    ],
+    deliv_title: "What I deliver",
+    deliverables: [
+      "UGC videos (TikTok / Reels) up to 60s",
+      "Unboxing & first impressions",
+      "Reviews with storytelling",
+      "Aesthetic photo sets (3–6 images)",
+      "Setup integration content",
+      "Geek event coverage",
+    ],
+    price_title: "Pricing",
+    price_value: "On request",
+    price_note: "Tailored to each partnership — send a brief and I'll come back with a proposal.",
+    process_title: "How a partnership works",
+    process: [
+      "Brief alignment — we talk about goals and product",
+      "Creative proposal — I send concept + format",
+      "Production — shooting and editing",
+      "Review & delivery — approval and final files",
+      "Publishing & report",
+    ],
+    download: "Download Media Kit (PDF)",
     partners_title: "PARTNERSHIPS",
-    partners_sub: "Dream brands & future collaborations",
-    cta_title: "Let’s create something amazing together",
-    footer: "© 2026 Arwen · made with cozy chaos & purple magic",
+    partners_sub: "Brands I've worked with",
+    cta_title: "Let's create something together",
+    cta_sub: "Send me a message and let's talk about your brand.",
+    footer: "© 2026 Arwen · made with care & purple light",
   },
   pt: {
     nav_contact: "Contato Profissional",
-    nav_links: "Meus Links",
     tagline: "Criadora Geek",
     h2_line1: "Desenvolvedora de dia,",
-    h2_line2: "geek permanentemente",
-    intro: "Criadora geek, gamer e lifestyle compartilhando jogos, livros, maquiagem, setup, eventos e hiperfixações caóticas com uma estética cozy maximalista.",
-    cta_portfolio: "Portfólio UGC",
-    cta_links: "Link na Bio",
-    hyper_title: "HIPERFIXAÇÕES DO MOMENTO",
-    hyper: ["Jogos", "Livros", "Maquiagem", "Setup", "Eventos Geek", "Colecionáveis", "Conteúdo Cozy", "UGC"],
+    h2_line2: "geek o resto do tempo",
+    intro: "Criadora geek, gamer e lifestyle. Compartilho jogos, livros, maquiagem, setup, eventos e o que mais estou vivendo no momento — sempre com um toque autêntico e estético.",
+    cta_portfolio: "Ver meu trabalho",
+    cta_media: "Mídia Kit",
+    hyper_title: "O QUE EU AMO",
+    hyper: ["Jogos", "Livros", "Maquiagem", "Setup", "Eventos Geek", "Colecionáveis", "Manhãs calmas", "UGC"],
+    about_title: "Sobre mim",
+    about_p1: "Oi, eu sou a Arwen — desenvolvedora, gamer e criadora. Construí meu cantinho da internet em volta das coisas que eu amo: jogos, livros, beleza e os pequenos detalhes que fazem um espaço parecer um lar.",
+    about_p2: "Crio conteúdo com carinho: roteiro pensado, iluminação suave, uma estética que tem a minha cara. Se a sua marca combina com esse universo, vamos conversar.",
     ugc_title: "UGC + Criadora",
-    ugc_desc: "Crio conteúdo autêntico, moderno e envolvente pensado para conexão, storytelling e performance nas redes sociais.",
+    ugc_desc: "Conteúdo autêntico, moderno e envolvente, pensado para conexão, storytelling e performance nas redes sociais.",
     services: ["Reviews", "Unboxing", "Vídeos TikTok / Reels", "Vídeos de Storytelling", "Conteúdo Estético", "Lifestyle Geek"],
     aesthetic_pill: "Conteúdo estético",
     portfolio_title: "PORTFÓLIO",
     portfolio_items: ["Tour do Setup", "Review de Jogo", "UGC Beauty", "Unboxing Geek", "Cozy Gaming", "Reel de Maquiagem"],
-    view_full: "Ver portfólio completo",
+    media_title: "MÍDIA KIT",
+    media_sub: "Números, formatos e como podemos trabalhar juntos",
+    stats: [
+      { icon: Users, label: "Seguidores", value: "1.2k", note: "e crescendo" },
+      { icon: Eye, label: "Views por mês", value: "32k", note: "entre plataformas" },
+      { icon: BarChart3, label: "Audiência principal", value: "85%", note: "mulheres, 18–34" },
+    ],
+    deliv_title: "O que eu entrego",
+    deliverables: [
+      "Vídeos UGC (TikTok / Reels) até 60s",
+      "Unboxing & primeiras impressões",
+      "Reviews com storytelling",
+      "Sets de fotos estéticas (3–6 imagens)",
+      "Conteúdo integrado ao setup",
+      "Cobertura de eventos geek",
+    ],
+    price_title: "Valores",
+    price_value: "Sob consulta",
+    price_note: "Personalizado para cada parceria — me manda um briefing que volto com uma proposta.",
+    process_title: "Como funciona uma parceria",
+    process: [
+      "Alinhamento do briefing — falamos sobre objetivo e produto",
+      "Proposta criativa — envio conceito + formato",
+      "Produção — gravação e edição",
+      "Revisão & entrega — aprovação e arquivos finais",
+      "Publicação & relatório",
+    ],
+    download: "Baixar Mídia Kit (PDF)",
     partners_title: "PARCERIAS",
-    partners_sub: "Marcas dos sonhos & futuras colabs",
-    cta_title: "Vamos criar algo incrível juntos",
-    footer: "© 2026 Arwen · feito com caos cozy & magia roxa",
+    partners_sub: "Marcas com quem já trabalhei",
+    cta_title: "Vamos criar algo juntos",
+    cta_sub: "Me manda uma mensagem e a gente conversa sobre a sua marca.",
+    footer: "© 2026 Arwen · feito com carinho & luz roxa",
   },
 } as const;
 
 const socials = [
-  { icon: Instagram, label: "Instagram", handle: "@by.arwenn", href: "#" },
-  { icon: Music2, label: "TikTok", handle: "@by.arwenn", href: "#" },
-  { icon: Youtube, label: "YouTube", handle: "Arwen", href: "#" },
+  { icon: Instagram, label: "Instagram", handle: "@by.arwenn", href: "https://www.instagram.com/by.arwenn" },
+  { icon: Music2, label: "TikTok", handle: "@by.arwenn", href: "https://www.tiktok.com/@by.arwenn" },
+  { icon: Youtube, label: "YouTube", handle: "@by.arwenn", href: "https://www.youtube.com/@by.arwenn" },
+  { icon: Twitch, label: "Twitch", handle: "byarwenn", href: "https://www.twitch.tv/byarwenn" },
   { icon: Mail, label: "Email", handle: "by.arwenn.contato@gmail.com", href: "mailto:by.arwenn.contato@gmail.com" },
 ];
 
@@ -87,15 +146,6 @@ const hyperImgs = [gamesImg, booksImg, makeupImg, catSetup, eventsImg, collectib
 const serviceIcons = [Star, Gift, Video, MessageSquare, Wand2, Sparkles];
 
 const portfolioImgs = [catSetup, gamingImg, makeupImg, collectiblesImg, cozyImg, makeupImg];
-
-const brands = [
-  { name: "Nintendo", className: "font-display italic tracking-tight" },
-  { name: "REDRAGON", className: "font-sans font-black tracking-[0.18em]" },
-  { name: "Pichau", className: "font-script text-3xl" },
-  { name: "SHEGLAM", className: "font-sans font-extrabold tracking-[0.32em]" },
-  { name: "press start", className: "font-display lowercase italic" },
-  { name: "Funko", className: "font-display font-bold" },
-];
 
 function Stars({ count = 30, className = "" }: { count?: number; className?: string }) {
   return (
@@ -146,8 +196,37 @@ function Divider() {
   );
 }
 
+function CrystalArt({ size = 88, delay = 0 }: { size?: number; delay?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 100 100" className="float-slow" style={{ animationDelay: `${delay}s` }}>
+      <defs>
+        <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#f0d4ff" />
+          <stop offset="60%" stopColor="#d76dff" />
+          <stop offset="100%" stopColor="#7a3bc8" />
+        </linearGradient>
+        <radialGradient id="cglow" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="46" fill="url(#cglow)" opacity="0.25" />
+      {/* central diamond */}
+      <polygon points="50,14 78,42 50,86 22,42" fill="url(#cg)" stroke="#fff7ff" strokeWidth="1.2" strokeLinejoin="round" />
+      <polyline points="22,42 50,52 78,42" fill="none" stroke="#fff7ff" strokeWidth="1" opacity="0.7" />
+      <line x1="50" y1="14" x2="50" y2="86" stroke="#fff7ff" strokeWidth="0.6" opacity="0.4" />
+      {/* sparkles */}
+      <g fill="#fff7ff">
+        <circle cx="14" cy="22" r="1.5" />
+        <circle cx="86" cy="28" r="1.2" />
+        <circle cx="18" cy="78" r="1" />
+        <circle cx="84" cy="76" r="1.6" />
+      </g>
+    </svg>
+  );
+}
+
 function FloatingControls({ lang, setLang }: { lang: Lang; setLang: (l: Lang) => void }) {
-  const L = t[lang];
   return (
     <div className="fixed right-3 top-3 z-50 flex items-center gap-2 sm:right-5 sm:top-5">
       <motion.button
@@ -160,13 +239,6 @@ function FloatingControls({ lang, setLang }: { lang: Lang; setLang: (l: Lang) =>
         <span className="text-white/30">/</span>
         <span className={lang === "pt" ? "text-white" : "text-white/50"}>PT</span>
       </motion.button>
-      <motion.a
-        whileHover={{ y: -2, scale: 1.05, boxShadow: "0 10px 40px rgba(216,109,255,0.6)" }}
-        whileTap={{ scale: 0.96 }}
-        href={LINKS_URL} target="_blank" rel="noreferrer"
-        className="btn-primary sweep flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold">
-        <LinkIcon size={14} /> {L.nav_links}
-      </motion.a>
     </div>
   );
 }
@@ -264,18 +336,21 @@ function Index() {
                 </motion.a>
                 <motion.a whileHover={{ scale: 1.06, y: -3, boxShadow: "0 10px 40px rgba(184,108,255,0.45)" }}
                   whileTap={{ scale: 0.96 }} transition={{ type: "spring", stiffness: 260, damping: 18 }}
-                  href={LINKS_URL} target="_blank" rel="noreferrer"
+                  href="#media-kit"
                   className="btn-ghost sweep flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold">
-                  <LinkIcon size={18} /> {L.cta_links}
+                  <FileText size={18} /> {L.cta_media}
                 </motion.a>
               </div>
             </div>
 
             <div className="relative z-10 mt-10 lg:mt-14">
               <div className="glass-strong rounded-2xl p-4 sm:p-5">
-                <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                   {socials.map((s) => (
-                    <motion.a key={s.label} href={s.href} whileHover={{ y: -3 }}
+                    <motion.a key={s.label} href={s.href}
+                      target={s.href.startsWith("http") ? "_blank" : undefined}
+                      rel={s.href.startsWith("http") ? "noreferrer" : undefined}
+                      whileHover={{ y: -3 }}
                       transition={{ type: "spring", stiffness: 300, damping: 18 }}
                       className="group sweep relative flex items-center gap-3 rounded-xl p-1.5">
                       <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-lavender/30 to-accent/20 neon-border transition group-hover:shadow-[0_0_28px_rgba(216,109,255,0.7)]">
@@ -306,7 +381,39 @@ function Index() {
 
       <Divider />
 
-      {/* ===== HYPERFIXATIONS ===== */}
+      {/* ===== ABOUT ===== */}
+      <section id="about" className="relative px-4 sm:px-8 lg:px-16">
+        <div className="mx-auto max-w-6xl glass-strong rounded-[2rem] p-6 sm:p-10 lg:p-14">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-[2rem] neon-border">
+                <img src={arwenHero} alt="Arwen portrait" width={600} height={750}
+                  className="h-[420px] w-full object-cover sm:h-[480px]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0418]/60 via-transparent to-transparent" />
+              </div>
+              <CrystalArt size={70} />
+            </div>
+            <div>
+              <div className="flex items-center gap-3">
+                <span className="h-px w-10 bg-lilac/60" />
+                <h3 className="text-xs font-bold tracking-[0.35em] text-lilac">{L.about_title.toUpperCase()}</h3>
+              </div>
+              <h4 className="mt-4 font-display text-4xl font-semibold gradient-text sm:text-5xl">{L.about_title}</h4>
+              <p className="mt-5 text-base leading-relaxed text-[color:var(--muted-foreground)]">{L.about_p1}</p>
+              <p className="mt-4 text-base leading-relaxed text-[color:var(--muted-foreground)]">{L.about_p2}</p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {["games", "books", "makeup", "setup", "events"].map((tag) => (
+                  <span key={tag} className="rounded-full glass px-3 py-1 text-xs text-lilac">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Divider />
+
+      {/* ===== WHAT I LOVE ===== */}
       <section className="relative px-4 sm:px-8 lg:px-16">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center justify-center gap-4">
@@ -432,15 +539,75 @@ function Index() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-10 flex justify-center">
-            <motion.a
-              whileHover={{ scale: 1.06, y: -3, boxShadow: "0 14px 50px rgba(216,109,255,0.7)" }}
-              whileTap={{ scale: 0.96 }}
-              href={LINKS_URL} target="_blank" rel="noreferrer"
-              className="btn-primary sweep flex items-center gap-2 rounded-full px-8 py-3 text-sm font-semibold">
-              <LinkIcon size={16} /> {L.view_full}
-            </motion.a>
+      <Divider />
+
+      {/* ===== MEDIA KIT ===== */}
+      <section id="media-kit" className="relative px-4 sm:px-8 lg:px-16">
+        <div className="mx-auto max-w-7xl glass-strong rounded-[2rem] p-6 sm:p-10 lg:p-14">
+          <div className="flex items-center justify-center gap-4">
+            <span className="h-px w-12 bg-lilac/50 sm:w-24" />
+            <h3 className="text-center text-xs font-bold tracking-[0.35em] text-lilac sm:text-sm">{L.media_title}</h3>
+            <span className="h-px w-12 bg-lilac/50 sm:w-24" />
+          </div>
+          <p className="mt-3 text-center text-sm italic text-[color:var(--muted-foreground)]">{L.media_sub}</p>
+
+          {/* Stats */}
+          <div className="mt-10 grid gap-4 sm:grid-cols-3">
+            {L.stats.map((s, i) => (
+              <motion.div key={s.label}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                transition={{ delay: i * 0.1, type: "spring", stiffness: 200 }}
+                whileHover={{ y: -6, scale: 1.03 }}
+                className="group relative overflow-hidden rounded-2xl glass p-6 text-center">
+                <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lavender/40 to-accent/30 transition group-hover:shadow-[0_0_24px_rgba(216,109,255,0.8)]">
+                  <s.icon size={20} className="text-white" />
+                </div>
+                <div className="font-display text-4xl font-bold gradient-text">{s.value}</div>
+                <div className="mt-1 text-sm font-semibold text-white">{s.label}</div>
+                <div className="text-xs text-[color:var(--muted-foreground)]">{s.note}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Deliverables + Pricing */}
+          <div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+            <div className="rounded-2xl glass p-6 sm:p-8">
+              <h4 className="font-display text-2xl font-semibold gradient-text">{L.deliv_title}</h4>
+              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                {L.deliverables.map((d) => (
+                  <li key={d} className="flex items-start gap-2 text-sm">
+                    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-lilac" />
+                    <span className="text-[color:var(--muted-foreground)]">{d}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-2xl glass p-6 sm:p-8 text-center">
+              <h4 className="font-display text-2xl font-semibold gradient-text">{L.price_title}</h4>
+              <div className="mt-4 font-display text-4xl font-bold text-white">{L.price_value}</div>
+              <p className="mt-3 text-sm text-[color:var(--muted-foreground)]">{L.price_note}</p>
+              <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}
+                href="/media-kit.pdf" download
+                className="btn-primary sweep mt-5 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold">
+                <Download size={16} /> {L.download}
+              </motion.a>
+            </div>
+          </div>
+
+          {/* Process */}
+          <div className="mt-10 rounded-2xl glass p-6 sm:p-8">
+            <h4 className="font-display text-2xl font-semibold gradient-text">{L.process_title}</h4>
+            <ol className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+              {L.process.map((step, i) => (
+                <li key={i} className="relative rounded-xl bg-gradient-to-br from-lavender/15 to-accent/5 p-4">
+                  <div className="font-display text-3xl font-bold text-lilac/80">{String(i + 1).padStart(2, "0")}</div>
+                  <p className="mt-1 text-xs leading-relaxed text-[color:var(--muted-foreground)]">{step}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
@@ -449,7 +616,7 @@ function Index() {
 
       {/* ===== PARTNERSHIPS ===== */}
       <section className="relative px-4 sm:px-8 lg:px-16">
-        <div className="mx-auto max-w-7xl glass-strong rounded-3xl p-8 sm:p-12">
+        <div className="mx-auto max-w-3xl glass-strong rounded-3xl p-8 sm:p-12">
           <div className="flex items-center justify-center gap-4">
             <span className="h-px w-12 bg-lilac/50 sm:w-24" />
             <h3 className="text-center text-xs font-bold tracking-[0.35em] text-lilac sm:text-sm">{L.partners_title}</h3>
@@ -458,17 +625,15 @@ function Index() {
           <p className="mt-3 text-center text-xs italic text-[color:var(--muted-foreground)]">
             {L.partners_sub}
           </p>
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {brands.map((b) => (
-              <motion.div key={b.name}
-                whileHover={{ y: -4, scale: 1.06 }}
-                transition={{ type: "spring", stiffness: 280, damping: 18 }}
-                className="group sweep flex items-center justify-center rounded-2xl glass px-4 py-5 transition hover:shadow-[0_0_32px_rgba(216,109,255,0.55)] hover:ring-1 hover:ring-lavender/70">
-                <span className={`text-lg text-lilac/85 transition group-hover:text-white ${b.className}`}>
-                  {b.name}
-                </span>
-              </motion.div>
-            ))}
+          <div className="mt-10 flex justify-center">
+            <motion.div
+              whileHover={{ y: -4, scale: 1.06 }}
+              transition={{ type: "spring", stiffness: 280, damping: 18 }}
+              className="group sweep flex items-center justify-center rounded-2xl glass px-12 py-8 transition hover:shadow-[0_0_32px_rgba(216,109,255,0.55)] hover:ring-1 hover:ring-lavender/70">
+              <span className="font-display text-3xl italic tracking-wide text-lilac/85 transition group-hover:text-white sm:text-4xl">
+                Pangeia
+              </span>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -482,34 +647,30 @@ function Index() {
             style={{ backgroundImage: "radial-gradient(circle at 20% 50%, white, transparent 40%), radial-gradient(circle at 80% 50%, white, transparent 40%)" }} />
           <Stars count={20} className="opacity-60" />
           <div className="relative grid items-center gap-6 sm:grid-cols-[auto_1fr_auto]">
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/15 backdrop-blur float-slow">
-              <Ghost size={44} className="text-[#2a0a3a]" strokeWidth={1.5} />
-            </div>
+            <div className="flex items-center justify-center"><CrystalArt size={96} /></div>
             <div className="text-center sm:text-left">
-              <h3 className="flex flex-wrap items-center justify-center gap-2 font-display text-3xl font-semibold leading-tight text-[#1a0820] sm:justify-start sm:text-4xl">
+              <h3 className="font-display text-3xl font-semibold leading-tight text-[#1a0820] sm:text-4xl">
                 {L.cta_title}
-                <Heart size={28} className="text-[#2a0a3a]" fill="currentColor" />
               </h3>
+              <p className="mt-2 text-sm text-[#2a0a3a]/80 sm:text-base">{L.cta_sub}</p>
               <a href="mailto:by.arwenn.contato@gmail.com"
                 className="mt-3 inline-block text-base font-medium text-[#2a0a3a] underline-offset-4 hover:underline">
                 by.arwenn.contato@gmail.com
               </a>
               <div className="mt-4 flex flex-wrap justify-center gap-3 sm:justify-start">
                 <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}
-                  href={LINKS_URL} target="_blank" rel="noreferrer"
+                  href="mailto:by.arwenn.contato@gmail.com"
                   className="inline-flex items-center gap-2 rounded-full bg-[#1a0820] px-5 py-2.5 text-sm font-semibold text-white shadow-lg transition hover:shadow-[0_10px_30px_rgba(26,8,32,0.5)]">
-                  <LinkIcon size={14} /> {L.cta_links}
+                  <Mail size={14} /> {L.nav_contact}
                 </motion.a>
                 <motion.a whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.96 }}
-                  href="mailto:by.arwenn.contato@gmail.com"
+                  href="/media-kit.pdf" download
                   className="inline-flex items-center gap-2 rounded-full bg-white/30 px-5 py-2.5 text-sm font-semibold text-[#1a0820] backdrop-blur transition hover:bg-white/50">
-                  <Mail size={14} /> {L.nav_contact}
+                  <Download size={14} /> {L.cta_media}
                 </motion.a>
               </div>
             </div>
-            <div className="hidden h-20 w-20 items-center justify-center rounded-2xl bg-white/15 backdrop-blur float-slow sm:flex" style={{ animationDelay: "1.5s" }}>
-              <Joystick size={44} className="text-[#2a0a3a]" strokeWidth={1.5} />
-            </div>
+            <div className="hidden items-center justify-center sm:flex"><CrystalArt size={96} delay={1.5} /></div>
           </div>
         </div>
       </section>
@@ -517,20 +678,9 @@ function Index() {
       {/* ===== FOOTER ===== */}
       <footer className="relative mt-20 px-4 pb-12 text-center text-xs text-[color:var(--muted-foreground)] sm:px-8">
         <div className="mx-auto mb-6 flex max-w-md items-center justify-center gap-6" aria-hidden>
-          {[Sparkles, Gamepad2, Heart, Ghost, Star, Joystick].map((Icon, i) => (
-            <Icon key={i} size={20} strokeWidth={1.5}
-              className="text-lilac float-slow"
-              style={{ animationDelay: `${i * 0.4}s` }}
-              fill={Icon === Heart || Icon === Star ? "currentColor" : "none"} />
-          ))}
-        </div>
-        <div className="mx-auto mb-4 flex max-w-xs items-center justify-center gap-1" aria-hidden>
-          {[0,1,2,3,4,5,6,7,8].map((i) => (
-            <span key={i} className="h-1.5 w-1.5 rounded-sm" style={{
-              background: i % 3 === 0 ? "rgba(216,109,255,0.9)" : i % 3 === 1 ? "rgba(184,108,255,0.6)" : "rgba(229,184,255,0.4)",
-              boxShadow: "0 0 6px rgba(216,109,255,0.6)",
-            }} />
-          ))}
+          <CrystalArt size={36} />
+          <CrystalArt size={28} delay={0.5} />
+          <CrystalArt size={36} delay={1} />
         </div>
         <div className="mx-auto flex max-w-7xl items-center justify-center gap-2">
           <Heart size={12} className="text-lilac" fill="currentColor" />
